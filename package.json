@@ -1,0 +1,40 @@
+{
+  "name": "clean-response",
+  "version": "0.0.1",
+  "private": true,
+  "description": "Monorepo for clean-response npm package and landing page",
+  "workspaces": [
+    "package",
+    "web"
+  ],
+  "scripts": {
+    "dev": "concurrently \"npm run dev:package\" \"npm run dev:web\"",
+    "dev:package": "npm run dev --workspace=package",
+    "dev:web": "npm run dev --workspace=web",
+    "build": "npm run build:package && npm run build:web",
+    "build:package": "npm run build --workspace=package",
+    "build:web": "npm run build --workspace=web",
+    "test": "npm run test --workspace=package",
+    "lint": "npm run lint --workspace=package",
+    "clean": "rm -rf node_modules package/node_modules web/node_modules package/dist web/.next"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  },
+  "keywords": [
+    "api",
+    "response",
+    "express",
+    "fastify",
+    "typescript",
+    "backend"
+  ],
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "@paper-design/shaders-react": "^0.0.71"
+  }
+}

@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "deploy": "npm run build && npx wrangler pages deploy out --project-name=clean-response-web"
+    "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy --skip-cache"
   },
   "dependencies": {
     "@paper-design/shaders-react": "^0.0.71",

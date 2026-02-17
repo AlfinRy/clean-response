@@ -1,5 +1,5 @@
 {
-  "name": "clean-response",
+  "name": "@leviosary/clean-response",
   "version": "1.0.0",
   "description": "A lightweight, type-safe TypeScript package for standardizing API responses in backend applications",
   "main": "./dist/index.js",
@@ -53,5 +53,8 @@
   },
   "engines": {
     "node": ">=16.0.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

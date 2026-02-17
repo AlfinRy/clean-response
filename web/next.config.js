@@ -4,13 +4,13 @@ const nextConfig = {
   compiler: {
     removeConsole: process.env.NODE_ENV === 'production',
   },
-  swcMinify: true,
   experimental: {
     optimizePackageImports: ['lucide-react', 'framer-motion'],
   },
   images: {
     unoptimized: true,
   },
+  output: 'export',
 }
 
 module.exports = nextConfig

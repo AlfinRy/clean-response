@@ -19,7 +19,8 @@
     "clean": "rm -rf node_modules package/node_modules web/node_modules package/dist web/.next"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "concurrently": "^8.2.2",
+    "wrangler": "^4.66.0"
   },
   "engines": {
     "node": ">=18.0.0"
@@ -35,6 +36,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "@opennextjs/cloudflare": "^1.16.5",
     "@paper-design/shaders-react": "^0.0.71"
   }
 }

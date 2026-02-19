@@ -1,3 +1,5 @@
+import CopyButton from './CopyButton'
+
 const examples = [
   {
     title: 'before',
@@ -35,11 +37,13 @@ export default function WhyThisPackage() {
             <div className="text-sm text-gray-400 mb-3 pl-4">
               {example.description}
             </div>
-            <div className="bg-black/30 border border-white/5 rounded-md overflow-x-auto">
-              <pre className="p-3 text-sm font-mono text-gray-300">
-                {example.code}
-              </pre>
-            </div>
+            <CopyButton code={example.code}>
+              <div className="bg-black/30 border border-white/5 rounded-md overflow-x-auto">
+                <pre className="p-3 text-sm font-mono text-gray-300">
+                  {example.code}
+                </pre>
+              </div>
+            </CopyButton>
           </div>
         ))}
       </div>

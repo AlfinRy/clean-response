@@ -1,3 +1,5 @@
+import CopyButton from './CopyButton'
+
 export default function QuickStart() {
   return (
     <section id="docs" className="px-4 py-16 max-w-4xl mx-auto scroll-mt-20">
@@ -17,12 +19,14 @@ export default function QuickStart() {
             <span className="text-purple-400">1.</span>
             <span className="ml-2 text-white">Install the package</span>
           </div>
-          <div className="bg-black/30 border border-white/5 rounded-md overflow-x-auto mb-3">
-            <div className="px-4 py-3 font-mono text-sm">
-              <span className="text-gray-500">$</span>{' '}
-              <span className="text-white">npm install @leviosary/clean-response</span>
+          <CopyButton code="npm install @leviosary/clean-response" className="mb-3">
+            <div className="bg-black/30 border border-white/5 rounded-md overflow-x-auto">
+              <div className="px-4 py-3 font-mono text-sm">
+                <span className="text-gray-500">$</span>{' '}
+                <span className="text-white">npm install @leviosary/clean-response</span>
+              </div>
             </div>
-          </div>
+          </CopyButton>
         </div>
 
         {/* Step 2: Import */}
@@ -31,11 +35,13 @@ export default function QuickStart() {
             <span className="text-purple-400">2.</span>
             <span className="ml-2 text-white">Import functions</span>
           </div>
-          <div className="bg-black/30 border border-white/5 rounded-md overflow-x-auto mb-3">
-            <pre className="px-4 py-3 text-sm font-mono text-gray-300">
+          <CopyButton code="import { success, error, paginate } from '@leviosary/clean-response'" className="mb-3">
+            <div className="bg-black/30 border border-white/5 rounded-md overflow-x-auto">
+              <pre className="px-4 py-3 text-sm font-mono text-gray-300">
 {`import { success, error, paginate } from '@leviosary/clean-response'`}
-            </pre>
-          </div>
+              </pre>
+            </div>
+          </CopyButton>
         </div>
 
         {/* Step 3: Use */}
@@ -44,8 +50,19 @@ export default function QuickStart() {
             <span className="text-purple-400">3.</span>
             <span className="ml-2 text-white">Use in your routes</span>
           </div>
-          <div className="bg-black/30 border border-white/5 rounded-md overflow-x-auto mb-3">
-            <pre className="px-4 py-3 text-sm font-mono text-gray-300">
+          <CopyButton
+            code={`// Success response
+res.json(success(user, "User created"))
+
+// Error response
+res.json(error("User not found", 404))
+
+// Paginated response
+res.json(paginate(users, page, limit))`}
+            className="mb-3"
+          >
+            <div className="bg-black/30 border border-white/5 rounded-md overflow-x-auto">
+              <pre className="px-4 py-3 text-sm font-mono text-gray-300">
 {`// Success response
 res.json(success(user, "User created"))
 
@@ -54,8 +71,9 @@ res.json(error("User not found", 404))
 
 // Paginated response
 res.json(paginate(users, page, limit))`}
-            </pre>
-          </div>
+              </pre>
+            </div>
+          </CopyButton>
         </div>
 
         {/* Done message */}

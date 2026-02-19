@@ -1,4 +1,5 @@
 import { Github, Package } from 'lucide-react'
+import CopyButton from './CopyButton'
 
 export default function Hero() {
   return (
@@ -33,7 +34,7 @@ export default function Hero() {
         </p>
 
         {/* Install commands - terminal style with glass effect */}
-        <div className="glass-card font-mono text-sm overflow-x-auto">
+        <CopyButton code="npm install @leviosary/clean-response" className="glass-card font-mono text-sm overflow-x-auto">
           <div className="space-y-2">
             <div>
               <span className="text-gray-500">$</span>{' '}
@@ -48,10 +49,13 @@ export default function Hero() {
               <span className="text-white">pnpm add @leviosary/clean-response</span>
             </div>
           </div>
-        </div>
+        </CopyButton>
 
         {/* Usage examples with glass effect */}
-        <div className="glass-card font-mono text-sm overflow-x-auto">
+        <CopyButton
+          code={`import { success, error, paginate } from '@leviosary/clean-response' return success(data, "User created")`}
+          className="glass-card font-mono text-sm overflow-x-auto"
+        >
           <div className="space-y-2">
             <div>
               <span className="text-gray-500">import</span>{' '}
@@ -66,7 +70,7 @@ export default function Hero() {
               <span className="text-white">(data, {"\"User created\""})</span>
             </div>
           </div>
-        </div>
+        </CopyButton>
 
         {/* CTA Buttons */}
         <div className="flex flex-col sm:flex-row items-center justify-center gap-4">

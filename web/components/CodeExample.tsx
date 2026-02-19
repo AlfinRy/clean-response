@@ -1,3 +1,5 @@
+import CopyButton from './CopyButton'
+
 const codeExample = `import { success, error, paginate } from '@leviosary/clean-response'
 
 // Success response
@@ -41,7 +43,7 @@ export default function CodeExample() {
       </div>
 
       {/* Code Block */}
-      <div className="glass-card overflow-x-auto">
+      <CopyButton code={codeExample} className="glass-card overflow-x-auto">
         <pre className="text-sm font-mono">
           {codeExample.split('\n').map((line, i) => {
             const isComment = line.trim().startsWith('//')
@@ -63,7 +65,7 @@ export default function CodeExample() {
             )
           })}
         </pre>
-      </div>
+      </CopyButton>
     </section>
   )
 }

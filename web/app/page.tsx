@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero'
 import Features from '@/components/Features'
 import CodeExample from '@/components/CodeExample'
+import MoreExamples from '@/components/MoreExamples'
 import HowItWorks from '@/components/HowItWorks'
 import InteractiveDemo from '@/components/InteractiveDemo'
 import QuickStart from '@/components/QuickStart'
@@ -18,6 +19,7 @@ export default function Home() {
         <Hero />
         <Features />
         <CodeExample />
+        <MoreExamples />
         <HowItWorks />
         <InteractiveDemo />
         <QuickStart />

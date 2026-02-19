@@ -1,4 +1,4 @@
-const codeExample = `import { success, error, paginate } from 'clean-response'
+const codeExample = `import { success, error, paginate } from '@leviosary/clean-response'
 
 // Success response
 app.get('/users/:id', (req, res) => {
@@ -30,7 +30,7 @@ app.get('/users', (req, res) => {
 
 export default function CodeExample() {
   return (
-    <section className="px-4 py-12 max-w-4xl mx-auto">
+    <section id="examples" className="px-4 py-12 max-w-4xl mx-auto scroll-mt-20">
       {/* Section Header - terminal style */}
       <div className="border-b border-white/10 pb-4 mb-8">
         <div className="font-mono text-sm">
@@ -54,7 +54,7 @@ export default function CodeExample() {
                     <span className="text-purple-400">import</span>{' '}
                     <span className="text-cyan-300">{`{ success, error, paginate }`}</span>{' '}
                     <span className="text-purple-400">from</span>{' '}
-                    <span className="text-green-400">{`'clean-response'`}</span>
+                    <span className="text-green-400">{`'@leviosary/clean-response'`}</span>
                   </>
                 ) : (
                   line

@@ -19,7 +19,7 @@ const features = [
 
 export default function Features() {
   return (
-    <section className="px-4 py-12 max-w-4xl mx-auto">
+    <section id="features" className="px-4 py-12 max-w-4xl mx-auto scroll-mt-20">
       {/* Section Header - terminal style */}
       <div className="border-b border-white/10 pb-4 mb-8">
         <div className="font-mono text-sm">

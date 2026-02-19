@@ -1,6 +1,8 @@
+import { Github, Package } from 'lucide-react'
+
 export default function Hero() {
   return (
-    <section className="px-4 py-16 md:py-24 max-w-4xl mx-auto">
+    <section className="px-4 py-16 md:py-24 max-w-4xl mx-auto scroll-mt-20">
       <div className="space-y-8">
         {/* Logo */}
         <div className="flex justify-center">
@@ -35,15 +37,15 @@ export default function Hero() {
           <div className="space-y-2">
             <div>
               <span className="text-gray-500">$</span>{' '}
-              <span className="text-white">npm install clean-response</span>
+              <span className="text-white">npm install @leviosary/clean-response</span>
             </div>
             <div>
               <span className="text-gray-500">$</span>{' '}
-              <span className="text-white">yarn add clean-response</span>
+              <span className="text-white">yarn add @leviosary/clean-response</span>
             </div>
             <div>
               <span className="text-gray-500">$</span>{' '}
-              <span className="text-white">pnpm add clean-response</span>
+              <span className="text-white">pnpm add @leviosary/clean-response</span>
             </div>
           </div>
         </div>
@@ -55,7 +57,7 @@ export default function Hero() {
               <span className="text-gray-500">import</span>{' '}
               <span className="text-white">{`{ success, error, paginate }`}</span>{' '}
               <span className="text-gray-500">from</span>{' '}
-              <span className="text-green-400">'clean-response'</span>
+              <span className="text-green-400">'@leviosary/clean-response'</span>
             </div>
             <div className="text-gray-500">// Success response</div>
             <div>
@@ -66,28 +68,30 @@ export default function Hero() {
           </div>
         </div>
 
-        {/* Links */}
-        <div className="flex items-center justify-center gap-6 text-sm">
+        {/* CTA Buttons */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
           <a
-            href="#get-started"
-            className="text-gray-300 hover:text-white transition-colors"
+            href="#quick-start"
+            className="px-6 py-3 bg-gradient-to-r from-[#667eea] to-[#764ba2] text-white font-semibold rounded-lg hover:opacity-90 transition-opacity"
           >
-            Read Docs
+            Get Started →
           </a>
           <a
-            href="https://github.com"
+            href="https://github.com/AlfinRy/clean-response"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-white transition-colors"
+            className="px-6 py-3 glass-card text-white font-medium rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2"
           >
+            <Github className="w-4 h-4" />
             GitHub
           </a>
           <a
-            href="https://npmjs.com"
+            href="https://www.npmjs.com/package/@leviosary/clean-response"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-gray-300 hover:text-white transition-colors"
+            className="px-6 py-3 glass-card text-white font-medium rounded-lg hover:bg-white/10 transition-colors flex items-center gap-2"
           >
+            <Package className="w-4 h-4" />
             npm
           </a>
         </div>

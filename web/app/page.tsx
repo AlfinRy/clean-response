@@ -1,6 +1,7 @@
 import Hero from '@/components/Hero'
 import Features from '@/components/Features'
 import CodeExample from '@/components/CodeExample'
+import HowItWorks from '@/components/HowItWorks'
 import QuickStart from '@/components/QuickStart'
 import WhyThisPackage from '@/components/WhyThisPackage'
 import Footer from '@/components/Footer'
@@ -16,6 +17,7 @@ export default function Home() {
         <Hero />
         <Features />
         <CodeExample />
+        <HowItWorks />
         <QuickStart />
         <WhyThisPackage />
         <Footer />

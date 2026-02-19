@@ -2,7 +2,7 @@ import type { Metadata } from 'next';
 import './globals.css';
 
 export const metadata: Metadata = {
-	title: 'clean-response',
+	title: 'clean-response | Standardize API Responses',
 	description: 'Works like your response formatter. Standardize API responses with type-safe, lightweight functions.',
 	keywords: ['api', 'response', 'express', 'fastify', 'typescript', 'backend', 'rest'],
 	authors: [{ name: 'alfinry' }],
@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 		apple: '/apple-touch-icon.png',
 	},
 	openGraph: {
-		title: 'clean-response',
+		title: 'clean-response | Standardize API Responses',
 		description: 'Standardize API responses with type-safe, lightweight functions',
 		type: 'website',
 	}

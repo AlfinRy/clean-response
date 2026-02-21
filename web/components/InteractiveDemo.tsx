@@ -23,18 +23,21 @@ export default function InteractiveDemo() {
 
   const generateResponse = () => {
     try {
+      const timestamp = new Date().toISOString()
       switch (funcType) {
         case 'success':
           return JSON.stringify({
             success: true,
+            message: message || 'Success',
             data: dataInput ? JSON.parse(dataInput) : null,
-            message: message || undefined,
+            timestamp,
           }, null, 2)
         case 'error':
           return JSON.stringify({
             success: false,
-            error: errorMessage,
-            statusCode: parseInt(statusCode) || 400,
+            message: errorMessage,
+            code: parseInt(statusCode) || 400,
+            timestamp,
           }, null, 2)
         case 'paginate':
           const totalNum = parseInt(total) || 0
@@ -42,19 +45,23 @@ export default function InteractiveDemo() {
           const pageNum = parseInt(page) || 1
           return JSON.stringify({
             success: true,
+            message: 'Success',
             data: dataInput ? JSON.parse(dataInput) : [],
-            pagination: {
+            meta: {
               page: pageNum,
               perPage: perPageNum,
               total: totalNum,
               totalPages: Math.ceil(totalNum / perPageNum),
             },
+            timestamp,
           }, null, 2)
       }
     } catch (e) {
       return JSON.stringify({
-        error: 'Invalid JSON input',
-        hint: 'Check your JSON syntax',
+        success: false,
+        message: 'Invalid JSON input',
+        code: 400,
+        timestamp: new Date().toISOString(),
       }, null, 2)
     }
   }

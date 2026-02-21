@@ -31,7 +31,7 @@ export default function Hero() {
         {/* Badge */}
         <div className="flex justify-center">
           <Badge variant="secondary" className="px-4 py-2 text-sm">
-            v0.1.0 • Lightweight • Type-Safe
+            v1.2.0 • Lightweight • Type-Safe
           </Badge>
         </div>
 

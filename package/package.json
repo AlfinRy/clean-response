@@ -1,6 +1,6 @@
 {
   "name": "@leviosary/clean-response",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "A lightweight, type-safe TypeScript package for standardizing API responses in backend applications",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
@@ -26,7 +26,13 @@
     "format": "prettier --write \"**/*.{ts,tsx,json,md}\"",
     "format:check": "prettier --check \"**/*.{ts,tsx,json,md}\"",
     "type-check": "tsc --noEmit",
-    "prepublishOnly": "npm run build"
+    "prepublishOnly": "npm run build",
+    "release:patch": "npm version patch && npm run build && npm run test:run",
+    "release:minor": "npm version minor && npm run build && npm run test:run",
+    "release:major": "npm version major && npm run build && npm run test:run",
+    "publish:patch": "npm run release:patch && git push origin main --follow-tags && npm publish",
+    "publish:minor": "npm run release:minor && git push origin main --follow-tags && npm publish",
+    "publish:major": "npm run release:major && git push origin main --follow-tags && npm publish"
   },
   "keywords": [
     "api",

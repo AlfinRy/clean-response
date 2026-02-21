@@ -1,6 +1,6 @@
 {
   "name": "@leviosary/clean-response",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "description": "A lightweight, type-safe TypeScript package for standardizing API responses in backend applications",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",

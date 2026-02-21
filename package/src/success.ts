@@ -1,4 +1,4 @@
-import type { SuccessResponse } from './types'
+import type { SuccessResponse } from './types';
 
 /**
  * Creates a standardized success response
@@ -6,6 +6,7 @@ import type { SuccessResponse } from './types'
  * @template T - The type of data being returned
  * @param {T} data - The response data
  * @param {string} [message="Success"] - Optional success message
+ * @param {string} [requestId] - Optional request ID for tracing
  * @returns {SuccessResponse<T>} A standardized success response object
  *
  * @example
@@ -17,16 +18,26 @@ import type { SuccessResponse } from './types'
  *
  * // With custom message
  * const response = success({ id: 1, name: 'John' }, 'User created successfully')
+ *
+ * // With request ID for tracing
+ * const response = success({ id: 1, name: 'John' }, 'User created successfully', 'req-123')
  * ```
  */
 export function success<T = unknown>(
   data: T,
-  message: string = 'Success'
+  message: string = 'Success',
+  requestId?: string
 ): SuccessResponse<T> {
-  return {
+  const response: SuccessResponse<T> = {
     success: true,
     message,
     data,
     timestamp: new Date().toISOString(),
+  };
+
+  if (requestId) {
+    response.requestId = requestId;
   }
+
+  return response;
 }

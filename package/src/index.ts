@@ -7,16 +7,33 @@
  * @packageDocumentation
  */
 
-// Export functions
-export { success } from './success'
-export { error } from './error'
-export { paginate } from './paginate'
+// Core functions
+export { success } from './success';
+export { error, type ErrorOptions } from './error';
+export { paginate } from './paginate';
+
+// HTTP convenience functions
+export {
+  created,
+  noContent,
+  unauthorized,
+  forbidden,
+  notFound,
+  validationError,
+  badRequest,
+  conflict,
+  internalServerError,
+  serviceUnavailable,
+} from './http';
 
 // Export types
 export type {
   SuccessResponse,
   ErrorResponse,
+  FieldError,
   PaginationMeta,
   PaginatedResponse,
   ApiResponse,
-} from './types'
+  InferData,
+  InferErrorCode,
+} from './types';

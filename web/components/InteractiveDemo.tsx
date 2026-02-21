@@ -1,6 +1,12 @@
 'use client'
 
 import { useState } from 'react'
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card'
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
+import { Textarea } from '@/components/ui/textarea'
+import { Tabs, TabsList, TabsTrigger } from '@/components/ui/tabs'
+import { Badge } from '@/components/ui/badge'
 import CopyButton from './CopyButton'
 
 type FunctionType = 'success' | 'error' | 'paginate'
@@ -56,171 +62,178 @@ export default function InteractiveDemo() {
   const responseOutput = generateResponse()
 
   return (
-    <section id="demo" className="px-4 py-16 max-w-5xl mx-auto scroll-mt-20">
-      {/* Section Header - terminal style */}
-      <div className="border-b border-white/10 pb-4 mb-8">
-        <div className="font-mono text-sm">
-          <span className="text-gray-500">Interactive Demo</span>
-          <span className="mx-2">{'>'}</span>
-          <span className="text-gray-400">Try it yourself</span>
-        </div>
+    <section id="demo" className="px-4 py-16 md:py-20 max-w-6xl mx-auto scroll-mt-20 section-demo">
+      {/* Section Header */}
+      <div className="text-center mb-12 space-y-3">
+        <Badge className="mb-2 bg-amber-500/10 text-amber-400 border-amber-500/20">Interactive Demo</Badge>
+        <h2 className="text-3xl md:text-4xl font-bold tracking-tight">
+          Try it yourself
+        </h2>
+        <p className="text-muted-foreground max-w-2xl mx-auto">
+          See how your API responses will look in real-time
+        </p>
       </div>
 
-      <div className="grid md:grid-cols-2 gap-6">
+      <div className="grid lg:grid-cols-2 gap-6">
         {/* Input Section */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-white">Input</h3>
-
+        <div className="space-y-6">
           {/* Function Selector */}
-          <div className="glass-card">
-            <label className="block text-sm text-gray-400 mb-2">Function</label>
-            <div className="flex gap-2">
-              <button
-                onClick={() => setFuncType('success')}
-                className={`flex-1 px-4 py-2 rounded-md font-mono text-sm transition-colors ${
-                  funcType === 'success'
-                    ? 'bg-[#667eea] text-white'
-                    : 'bg-white/5 text-gray-300 hover:bg-white/10'
-                }`}
-              >
-                success()
-              </button>
-              <button
-                onClick={() => setFuncType('error')}
-                className={`flex-1 px-4 py-2 rounded-md font-mono text-sm transition-colors ${
-                  funcType === 'error'
-                    ? 'bg-[#667eea] text-white'
-                    : 'bg-white/5 text-gray-300 hover:bg-white/10'
-                }`}
-              >
-                error()
-              </button>
-              <button
-                onClick={() => setFuncType('paginate')}
-                className={`flex-1 px-4 py-2 rounded-md font-mono text-sm transition-colors ${
-                  funcType === 'paginate'
-                    ? 'bg-[#667eea] text-white'
-                    : 'bg-white/5 text-gray-300 hover:bg-white/10'
-                }`}
-              >
-                paginate()
-              </button>
-            </div>
-          </div>
+          <Card className="border-amber-500/20 bg-card/50 backdrop-blur-sm">
+            <CardHeader>
+              <CardTitle className="text-lg">Select Function</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <Tabs value={funcType} onValueChange={(v) => setFuncType(v as FunctionType)}>
+                <TabsList className="grid w-full grid-cols-3 bg-amber-500/10 border-amber-500/20">
+                  <TabsTrigger value="success">success()</TabsTrigger>
+                  <TabsTrigger value="error">error()</TabsTrigger>
+                  <TabsTrigger value="paginate">paginate()</TabsTrigger>
+                </TabsList>
+              </Tabs>
+            </CardContent>
+          </Card>
 
           {/* Data Input (for success & paginate) */}
           {(funcType === 'success' || funcType === 'paginate') && (
-            <div className="glass-card">
-              <label className="block text-sm text-gray-400 mb-2">Data (JSON)</label>
-              <textarea
-                value={dataInput}
-                onChange={(e) => setDataInput(e.target.value)}
-                className="w-full h-32 bg-black/30 border border-white/5 rounded-md p-3 font-mono text-sm text-gray-300 resize-none focus:outline-none focus:border-[#667eea]/50"
-                placeholder='{\n  "key": "value"\n}'
-              />
-            </div>
+            <Card className="border-amber-500/20 bg-card/50 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-lg">Data (JSON)</CardTitle>
+                <CardDescription>Enter the data you want to return</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Textarea
+                  value={dataInput}
+                  onChange={(e) => setDataInput(e.target.value)}
+                  className="font-mono text-sm min-h-[120px] bg-background/50"
+                  placeholder='{\n  "key": "value"\n}'
+                />
+              </CardContent>
+            </Card>
           )}
 
           {/* Message Input (for success) */}
           {funcType === 'success' && (
-            <div className="glass-card">
-              <label className="block text-sm text-gray-400 mb-2">Message (optional)</label>
-              <input
-                type="text"
-                value={message}
-                onChange={(e) => setMessage(e.target.value)}
-                className="w-full bg-black/30 border border-white/5 rounded-md px-3 py-2 font-mono text-sm text-gray-300 focus:outline-none focus:border-[#667eea]/50"
-                placeholder="Success message"
-              />
-            </div>
+            <Card className="border-amber-500/20 bg-card/50 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-lg">Success Message</CardTitle>
+                <CardDescription>Optional success message</CardDescription>
+              </CardHeader>
+              <CardContent>
+                <Input
+                  type="text"
+                  value={message}
+                  onChange={(e) => setMessage(e.target.value)}
+                  placeholder="Success message"
+                  className="font-mono"
+                />
+              </CardContent>
+            </Card>
           )}
 
-          {/* Error Message (for error) */}
+          {/* Error Inputs (for error) */}
           {funcType === 'error' && (
-            <div className="glass-card">
-              <label className="block text-sm text-gray-400 mb-2">Error Message</label>
-              <input
-                type="text"
-                value={errorMessage}
-                onChange={(e) => setErrorMessage(e.target.value)}
-                className="w-full bg-black/30 border border-white/5 rounded-md px-3 py-2 font-mono text-sm text-gray-300 focus:outline-none focus:border-[#667eea]/50"
-                placeholder="Error message"
-              />
-            </div>
-          )}
+            <>
+              <Card className="border-amber-500/20 bg-card/50 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-lg">Error Message</CardTitle>
+                  <CardDescription>Description of the error</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Input
+                    type="text"
+                    value={errorMessage}
+                    onChange={(e) => setErrorMessage(e.target.value)}
+                    placeholder="Error message"
+                    className="font-mono"
+                  />
+                </CardContent>
+              </Card>
 
-          {/* Status Code (for error) */}
-          {funcType === 'error' && (
-            <div className="glass-card">
-              <label className="block text-sm text-gray-400 mb-2">Status Code</label>
-              <input
-                type="number"
-                value={statusCode}
-                onChange={(e) => setStatusCode(e.target.value)}
-                className="w-full bg-black/30 border border-white/5 rounded-md px-3 py-2 font-mono text-sm text-gray-300 focus:outline-none focus:border-[#667eea]/50"
-                placeholder="400"
-              />
-            </div>
+              <Card className="border-amber-500/20 bg-card/50 backdrop-blur-sm">
+                <CardHeader>
+                  <CardTitle className="text-lg">Status Code</CardTitle>
+                  <CardDescription>HTTP status code to return</CardDescription>
+                </CardHeader>
+                <CardContent>
+                  <Input
+                    type="number"
+                    value={statusCode}
+                    onChange={(e) => setStatusCode(e.target.value)}
+                    placeholder="400"
+                    className="font-mono"
+                  />
+                </CardContent>
+              </Card>
+            </>
           )}
 
           {/* Pagination Options (for paginate) */}
           {funcType === 'paginate' && (
-            <div className="glass-card space-y-3">
-              <label className="block text-sm text-gray-400">Pagination Options</label>
-              <div className="grid grid-cols-3 gap-2">
-                <div>
-                  <label className="block text-xs text-gray-500 mb-1">Page</label>
-                  <input
-                    type="number"
-                    value={page}
-                    onChange={(e) => setPage(e.target.value)}
-                    className="w-full bg-black/30 border border-white/5 rounded-md px-3 py-2 font-mono text-sm text-gray-300 focus:outline-none focus:border-[#667eea]/50"
-                  />
+            <Card className="border-amber-500/20 bg-card/50 backdrop-blur-sm">
+              <CardHeader>
+                <CardTitle className="text-lg">Pagination Options</CardTitle>
+                <CardDescription>Configure pagination parameters</CardDescription>
+              </CardHeader>
+              <CardContent className="space-y-4">
+                <div className="grid grid-cols-3 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Page</label>
+                    <Input
+                      type="number"
+                      value={page}
+                      onChange={(e) => setPage(e.target.value)}
+                      className="font-mono"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Per Page</label>
+                    <Input
+                      type="number"
+                      value={perPage}
+                      onChange={(e) => setPerPage(e.target.value)}
+                      className="font-mono"
+                    />
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium">Total</label>
+                    <Input
+                      type="number"
+                      value={total}
+                      onChange={(e) => setTotal(e.target.value)}
+                      className="font-mono"
+                    />
+                  </div>
                 </div>
-                <div>
-                  <label className="block text-xs text-gray-500 mb-1">Per Page</label>
-                  <input
-                    type="number"
-                    value={perPage}
-                    onChange={(e) => setPerPage(e.target.value)}
-                    className="w-full bg-black/30 border border-white/5 rounded-md px-3 py-2 font-mono text-sm text-gray-300 focus:outline-none focus:border-[#667eea]/50"
-                  />
-                </div>
-                <div>
-                  <label className="block text-xs text-gray-500 mb-1">Total</label>
-                  <input
-                    type="number"
-                    value={total}
-                    onChange={(e) => setTotal(e.target.value)}
-                    className="w-full bg-black/30 border border-white/5 rounded-md px-3 py-2 font-mono text-sm text-gray-300 focus:outline-none focus:border-[#667eea]/50"
-                  />
-                </div>
-              </div>
-            </div>
+              </CardContent>
+            </Card>
           )}
         </div>
 
         {/* Output Section */}
-        <div className="space-y-4">
-          <h3 className="text-lg font-semibold text-white">Output</h3>
-          <CopyButton code={responseOutput}>
-            <div className="glass-card h-full min-h-[400px]">
-              <div className="bg-black/30 border border-white/5 rounded-md h-full min-h-[400px] overflow-x-auto">
-                <pre className="p-4 text-sm font-mono text-gray-300">
-                  {responseOutput}
-                </pre>
-              </div>
-            </div>
-          </CopyButton>
+        <div className="space-y-6">
+          <Card className="border-amber-500/20 bg-card/50 backdrop-blur-sm h-full">
+            <CardHeader>
+              <CardTitle className="text-lg flex items-center gap-2">
+                Output
+                <Badge variant="secondary" className="text-xs">Real-time</Badge>
+              </CardTitle>
+              <CardDescription>Generated API response</CardDescription>
+            </CardHeader>
+            <CardContent>
+              <CopyButton code={responseOutput}>
+                <div className="code-block min-h-[400px] bg-background/50 border-amber-500/10">
+                  <pre className="text-sm font-mono text-muted-foreground">
+                    {responseOutput}
+                  </pre>
+                </div>
+              </CopyButton>
+            </CardContent>
+          </Card>
         </div>
       </div>
 
-      {/* Note */}
-      <div className="mt-8 glass-card text-center py-4">
-        <span className="text-gray-400 text-sm">
-          This is how your API responses will look! Try different inputs and see the result in real-time. 🎮
-        </span>
-      </div>
+      {/* Divider */}
+      <div className="section-divider mt-16 !bg-amber-500/30" />
     </section>
   )
 }

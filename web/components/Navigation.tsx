@@ -2,13 +2,18 @@
 
 import { useState, useEffect } from 'react'
 import { Github, Package, Menu, X } from 'lucide-react'
+import { Button } from '@/components/ui/button'
+import { Badge } from '@/components/ui/badge'
 
 const navLinks = [
   { name: 'Features', href: '#features' },
   { name: 'Examples', href: '#examples' },
-  { name: 'Docs', href: '#docs' },
-  { name: 'GitHub', href: 'https://github.com/AlfinRy/clean-response', external: true },
-  { name: 'npm', href: 'https://www.npmjs.com/package/@leviosary/clean-response', external: true },
+  { name: 'Quick Start', href: '#quick-start' },
+]
+
+const externalLinks = [
+  { name: 'GitHub', href: 'https://github.com/AlfinRy/clean-response', icon: Github },
+  { name: 'npm', href: 'https://www.npmjs.com/package/@leviosary/clean-response', icon: Package },
 ]
 
 export default function Navigation() {
@@ -37,62 +42,107 @@ export default function Navigation() {
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 border-b border-transparent transition-all duration-300 ease-in-out ${
-        scrolled ? 'glass-card border-white/10' : 'bg-transparent'
+      className={`fixed top-0 left-0 right-0 z-50 border-b transition-all duration-300 ${
+        scrolled
+          ? 'border-border/50 bg-background/80 backdrop-blur-lg shadow-sm'
+          : 'border-transparent bg-background/50 backdrop-blur-sm'
       }`}
     >
-      <nav className="px-4 py-4 max-w-6xl mx-auto">
+      <nav className="px-4 py-4 max-w-7xl mx-auto">
         <div className="flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="flex items-center gap-2">
-            <img
-              src="/client-response-logo.svg"
-              alt="clean-response logo"
-              className="w-8 h-8"
-            />
-            <span className="font-mono text-white font-semibold">clean-response</span>
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault()
+              window.scrollTo({ top: 0, behavior: 'smooth' })
+            }}
+            className="flex items-center gap-2 group"
+          >
+            <div className="p-1.5 rounded-lg bg-primary/10 group-hover:bg-primary/20 transition-colors">
+              <img
+                src="/client-response-logo.svg"
+                alt="clean-response logo"
+                className="w-6 h-6"
+              />
+            </div>
+            <span className="font-mono font-semibold text-foreground group-hover:text-primary transition-colors">
+              clean-response
+            </span>
           </a>
 
           {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-6">
+          <div className="hidden md:flex items-center gap-1">
             {navLinks.map((link) => (
-              <button
+              <Button
                 key={link.name}
+                variant="ghost"
+                size="sm"
                 onClick={() => scrollTo(link.href)}
-                className="text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-1"
+                className="text-muted-foreground hover:text-foreground"
               >
-                {link.name === 'GitHub' && <Github className="w-4 h-4" />}
-                {link.name === 'npm' && <Package className="w-4 h-4" />}
                 {link.name}
-              </button>
+              </Button>
             ))}
+            <div className="w-px h-6 bg-border mx-2" />
+            {externalLinks.map((link) => {
+              const Icon = link.icon
+              return (
+                <Button
+                  key={link.name}
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => scrollTo(link.href)}
+                  className="text-muted-foreground hover:text-foreground"
+                >
+                  <Icon className="w-4 h-4 mr-1" />
+                  {link.name}
+                </Button>
+              )
+            })}
           </div>
 
           {/* Mobile Menu Button */}
-          <button
+          <Button
+            variant="ghost"
+            size="icon"
             onClick={() => setIsOpen(!isOpen)}
-            className="md:hidden text-gray-300 hover:text-white"
+            className="md:hidden"
             aria-label="Toggle menu"
           >
-            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+            {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+          </Button>
         </div>
 
         {/* Mobile Navigation */}
         {isOpen && (
-          <div className="md:hidden mt-4 pt-4 border-t border-white/10">
-            <div className="flex flex-col gap-4">
+          <div className="md:hidden mt-4 pt-4 border-t border-border/50">
+            <div className="flex flex-col gap-2">
               {navLinks.map((link) => (
-                <button
+                <Button
                   key={link.name}
+                  variant="ghost"
                   onClick={() => scrollTo(link.href)}
-                  className="text-sm text-gray-300 hover:text-white transition-colors flex items-center gap-2 text-left"
+                  className="justify-start text-muted-foreground hover:text-foreground"
                 >
-                  {link.name === 'GitHub' && <Github className="w-4 h-4" />}
-                  {link.name === 'npm' && <Package className="w-4 h-4" />}
                   {link.name}
-                </button>
+                </Button>
               ))}
+              <div className="h-px bg-border my-2" />
+              {externalLinks.map((link) => {
+                const Icon = link.icon
+                return (
+                  <Button
+                    key={link.name}
+                    variant="ghost"
+                    onClick={() => scrollTo(link.href)}
+                    className="justify-start text-muted-foreground hover:text-foreground"
+                  >
+                    <Icon className="w-4 h-4 mr-2" />
+                    {link.name}
+                  </Button>
+                )
+              })}
             </div>
           </div>
         )}

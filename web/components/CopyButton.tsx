@@ -7,9 +7,10 @@ interface CopyButtonProps {
   code: string
   children: React.ReactNode
   className?: string
+  showIcon?: boolean
 }
 
-export default function CopyButton({ code, children, className = '' }: CopyButtonProps) {
+export default function CopyButton({ code, children, className = '', showIcon = true }: CopyButtonProps) {
   const [copied, setCopied] = useState(false)
 
   const handleCopy = async () => {
@@ -20,18 +21,20 @@ export default function CopyButton({ code, children, className = '' }: CopyButto
 
   return (
     <div className={`relative group ${className}`}>
-      <button
-        onClick={handleCopy}
-        className="absolute top-2 right-2 p-2 rounded-md bg-white/5 hover:bg-white/10 border border-white/10 opacity-0 group-hover:opacity-100 transition-opacity z-10"
-        aria-label="Copy code"
-      >
-        {copied ? (
-          <Check className="w-4 h-4 text-green-400" />
-        ) : (
-          <Copy className="w-4 h-4 text-gray-400" />
-        )}
-      </button>
       {children}
+      {showIcon && (
+        <button
+          onClick={handleCopy}
+          className="absolute top-3 right-3 p-2 rounded-md bg-background/80 hover:bg-background border border-border/50 opacity-0 group-hover:opacity-100 transition-all duration-200 z-10 backdrop-blur-sm shadow-sm"
+          aria-label="Copy code"
+        >
+          {copied ? (
+            <Check className="w-4 h-4 text-green-500" />
+          ) : (
+            <Copy className="w-4 h-4 text-muted-foreground" />
+          )}
+        </button>
+      )}
     </div>
   )
 }
